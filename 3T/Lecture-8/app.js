@@ -27,6 +27,11 @@ app.get('/blog/new',(req,res)=>{
     res.render('new');
 })
 
+
+app.delete('/blog/:id',(req,res)=>{
+        res.send('this is a delete blog route');
+})
+
 app.listen(3000,()=>{
     console.log("app is running at port 3000");
 })
