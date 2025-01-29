@@ -1,9 +1,15 @@
 const { mongoose } = require("mongoose");
 
 let test=new mongoose.schema({
-    name:String,
-    id:Number,
-    contact_number:Number
+    name:{
+        type:String
+    },
+    id:{
+        type:Number
+    },
+    contact_number:{
+        type:Number
+    }
 })
 
 

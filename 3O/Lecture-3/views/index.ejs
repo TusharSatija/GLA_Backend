@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all blogs</title>
+</head>
+<body>
+    <h1>All blogs</h1>
+    <% for( let blog of blogs){ %>
+        <h2> title : <%=blog.title %></h2>
+        <img src="<%=blog.url%>" alt=".." srcset="">
+        <p><%=blog.desc%></p>
+        <%}  %>
+</body>
+</html>
+
+<!-- http://localhost:3333/blogs -->
