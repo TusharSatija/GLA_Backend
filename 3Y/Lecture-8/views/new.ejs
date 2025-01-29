@@ -6,20 +6,16 @@
     <title>new blog</title>
 </head>
 <body>
-    <h1>new form</h1>
-    <form action="/blogs/new" method="post">
+    <h1>new blog</h1>
+    <form action="/blog/:id" method="post">
         <label for="">tittle</label>
-        <input type="text" name="b-tittle" id="">
+        <input type="text" name="title" id="">
         <br>
-        <label for="">img url</label>
-        <input type="tel" name="b-url" id="">
+        <label for="">url</label>
+        <input type="text" name="imgUrl" id="">
         <br>
-        <label for="">Description</label>
-        <textarea name="" id="b-Desc"></textarea>
-        <br>
-        <button type="submit">Submit</button>
-
-        
+        <label for="">description</label>
+        <textarea name="desc" id=""></textarea>
     </form>
 </body>
 </html>

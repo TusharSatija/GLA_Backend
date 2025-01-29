@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blogs</title>
+    <title>show blog</title>
 </head>
 <body>
-    <h1>ALL BLOGS</h1>
-    <% for( let blog of blogs) { %>
-    <h2> Title :  <%=blog.title  %></h2>
-    <img src="<%=blog.url  %>" alt="">
-    <p> description :  <%=blog.desc %></p>
-    <form action="/blog/abc?method=DELETE" method="post">
-        <button type="submit">DELETE</button>
-    </form>
-    <% } %>
+    <h1>show All blogs</h1>
+    <% for(let blog of blogs) {%>
+        <h3>title : <%=blog.title%> </h3>
+        <img src="<%=blog.imgUrl%>" alt="....">
+        <p><%=blog.desc%></p>
+        <% } %>
+        <button>show</button> 
+        <button>edit</button>
+        <button>delete</button>
 </body>
 </html>
