@@ -1,0 +1,192 @@
+3y> use 3y
+already on db 3y
+3y> db.student.find({})
+[
+  { _id: ObjectId("679b2cf38fe5bab6d80d6b77"), name: 'rohit', age: 12 },
+  { _id: ObjectId("679b2e638fe5bab6d80d6b78"), name: 'abc' },
+  { _id: ObjectId("679b2e638fe5bab6d80d6b79"), name: 'efg' },
+  { _id: ObjectId("679b2e638fe5bab6d80d6b7a"), name: 'uvw' }
+]
+3y> db.student.updateMany( {},{ $set: { gender:'m'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3y> db.student.find({})
+[
+  {
+    _id: ObjectId("679b2cf38fe5bab6d80d6b77"),
+    name: 'rohit',
+    age: 12,
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b78"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b79"),
+    name: 'efg',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b7a"),
+    name: 'uvw',
+    gender: 'm'
+  }
+]
+ 
+3y> db.student.updateOne({name:'rohit'},{ $unset:{age:12}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3y> db.student.find({})
+[
+  {
+    _id: ObjectId("679b2cf38fe5bab6d80d6b77"),
+    name: 'rohit',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b78"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b79"),
+    name: 'efg',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b7a"),
+    name: 'uvw',
+    gender: 'm'
+  }
+]
+3y> db.student.replaceOne( {name:'uvw'},{name:"tusha"})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3y> db.student.find({})
+[
+  {
+    _id: ObjectId("679b2cf38fe5bab6d80d6b77"),
+    name: 'rohit',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b78"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b79"),
+    name: 'efg',
+    gender: 'm'
+  },
+  { _id: ObjectId("679b2e638fe5bab6d80d6b7a"), name: 'tusha' }
+] 
+
+3y> db.student.find({})
+[
+  {
+    _id: ObjectId("679b2cf38fe5bab6d80d6b77"),
+    name: 'rohit',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b78"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("679b2e638fe5bab6d80d6b79"),
+    name: 'efg',
+    gender: 'm'
+  },
+  { _id: ObjectId("679b2e638fe5bab6d80d6b7a"), name: 'tusha' }
+]
+db.student.updateMany({},{ $set :{ name:"" }});
+{
+  acknowledged: true,
+  insertedId: null,
+
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+3y> db.student.find({})
+[
+  { _id: ObjectId("67a084ed5729f7c51f0c931e"), name: '', age: 12 },
+  { _id: ObjectId("67a084ed5729f7c51f0c931f"), name: '', age: 23 },
+  { _id: ObjectId("67a084ed5729f7c51f0c9320"), name: '', age: 22 }
+]
+db.inventory.insertMany( [
+...    {
+...       "item": "nuts", "quantity": 30,
+...       "carrier": { "name": "Shipit", "fee": 3 }
+...    },
+...    {
+...       "item": "bolts", "quantity": 50,
+...       "carrier": { "name": "Shipit", "fee": 4 }
+...    },
+...    {
+...       "item": "washers", "quantity": 10,
+...       "carrier": { "name": "Shipit", "fee": 1 }
+...    }
+3y> db.inventory.find({});
+[
+  {
+    _id: ObjectId("67a089c75729f7c51f0c9321"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a089c75729f7c51f0c9322"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+  {
+    _id: ObjectId("67a089c75729f7c51f0c9323"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3y> db.inventory.find( {  quantity: { $gte:20}})
+[
+  {
+    _id: ObjectId("67a089c75729f7c51f0c9321"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a089c75729f7c51f0c9322"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  }
+]
+3y> db.inventory.find( {  quantity: { $lte:20}})
+3y>
+{
+    _id: ObjectId("67a089c75729f7c51f0c9323"),
+    quantity: 10,
+}
+3y> db.getCollectionNames()
+[ 'inventory', 'student' ]

@@ -1,0 +1,72 @@
+mongosh
+Current Mongosh Log ID: 67a1e98c9a49e64dd5d61d44
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-04T14:36:20.421+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use 3AD
+switched to db 3AD
+3AD> db.student.replaceOne({name:"efg"},{subject:"fullstack"});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3AD> db.student.find({});
+[
+  {
+    _id: ObjectId("67a09bb1a883d18258e8823a"),
+    name: 'abc',
+    gender: 'm'
+  },
+  { _id: ObjectId("67a09bd0a883d18258e8823b"), subject: 'fullstack' },
+  {
+    _id: ObjectId("67a09c07a883d18258e8823c"),
+    name: 'aaaa',
+    gender: 'm'
+3AD>
+  {
+    _id: ObjectId("67a09c07a883d18258e8823d"),
+    name: 'tushar',
+    gender: 'm'
+  }
+]
+3AD> db.student.updateMany( {},{ $unset:{name:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+3AD> db.student.find({});
+[
+  { _id: ObjectId("67a09bb1a883d18258e8823a"), gender: 'm' },
+  { _id: ObjectId("67a09bd0a883d18258e8823b"), subject: 'fullstack' },
+  { _id: ObjectId("67a09c07a883d18258e8823c"), gender: 'm' },
+  { _id: ObjectId("67a09c07a883d18258e8823d"), gender: 'm' }
+]
+3AD> db.student.deleteOne({subject:"fullstack"});
+{ acknowledged: true, deletedCount: 1 }
+3AD> db.student.find({});
+[
+  { _id: ObjectId("67a09bb1a883d18258e8823a"), gender: 'm' },
+  { _id: ObjectId("67a09c07a883d18258e8823c"), gender: 'm' },
+  { _id: ObjectId("67a09c07a883d18258e8823d"), gender: 'm' }
+]
+3AD> db.student.deleteOne({gender:"m"});
+{ acknowledged: true, deletedCount: 1 }
+3AD> db.student.find({});
+[
+  { _id: ObjectId("67a09c07a883d18258e8823c"), gender: 'm' },
+  { _id: ObjectId("67a09c07a883d18258e8823d"), gender: 'm' }
+]
+3AD> db.student.deleteMany({});
+{ acknowledged: true, deletedCount: 2 }
+3AD> db.student.find({});

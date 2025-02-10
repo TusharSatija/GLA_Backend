@@ -1,0 +1,150 @@
+mongosh
+Current Mongosh Log ID: 67a1ac6a03af896ca8ea0796
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-01-28T11:19:32.562+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs;
+3AD               152.00 KiB
+3T                 72.00 KiB
+3y                100.00 KiB
+Demo               72.00 KiB
+DummyProduct       72.00 KiB
+Mydata             72.00 KiB
+ad                152.00 KiB
+admin              48.00 KiB
+authDemo           72.00 KiB
+config             72.00 KiB
+e-commerce        144.00 KiB
+ecommerce          16.00 KiB
+food-app-db        40.00 KiB
+food-app-june-23   72.00 KiB
+group11           144.00 KiB
+local              88.00 KiB
+moiviesdb           8.00 KiB
+moviedb            40.00 KiB
+moviesDB            8.00 KiB
+moviesDB1           8.00 KiB
+mydatabase         40.00 KiB
+newdat             40.00 KiB
+shop-app           40.00 KiB
+shopping-g2-app   260.00 KiB
+student           328.00 KiB
+test               40.00 KiB
+test1              72.00 KiB
+urlShortener       72.00 KiB
+urlshortner        80.00 KiB
+test> use 3AH
+switched to db 3AH
+3AH> db.student.insertOne({name:"rohit"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a1add103af896ca8ea0797")
+}
+3AH> db.student.insertMany( [ { name:"abc"} ,{name:"efg"},{name:"pqr"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67a1ae5703af896ca8ea0798"),
+    '1': ObjectId("67a1ae5703af896ca8ea0799"),
+    '2': ObjectId("67a1ae5703af896ca8ea079a")
+  }
+}
+3AH> db.student.find({});
+[
+  { _id: ObjectId("67a1add103af896ca8ea0797"), name: 'rohit' },
+  { _id: ObjectId("67a1ae5703af896ca8ea0798"), name: 'abc' },
+  { _id: ObjectId("67a1ae5703af896ca8ea0799"), name: 'efg' },
+  { _id: ObjectId("67a1ae5703af896ca8ea079a"), name: 'pqr' }
+]
+3AH> db.student.updateOne({ name:"rohit"},{ $set:{age:18}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3AH>
+[
+3AH>
+
+3AH> db.student.find({});
+[
+  { _id: ObjectId("67a1add103af896ca8ea0797"), name: 'rohit', age: 18 },
+  { _id: ObjectId("67a1ae5703af896ca8ea0798"), name: 'abc' },
+  { _id: ObjectId("67a1ae5703af896ca8ea0799"), name: 'efg' },
+  { _id: ObjectId("67a1ae5703af896ca8ea079a"), name: 'pqr' }
+]
+3AH> db.student.updateMany({},{ $set:{gender:'M'}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3AH> db.student.find({});
+[
+  {
+    _id: ObjectId("67a1add103af896ca8ea0797"),
+    name: 'rohit',
+    age: 18,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a1ae5703af896ca8ea0798"),
+    name: 'abc',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a1ae5703af896ca8ea0799"),
+    name: 'efg',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a1ae5703af896ca8ea079a"),
+    name: 'pqr',
+    gender: 'M'
+  }
+]
+3AH>
+
+3AH> db.student.replaceOne({name:"abc"},{subject:"DAA"});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3AH> db.student.find({});
+[
+  {
+    _id: ObjectId("67a1add103af896ca8ea0797"),
+    name: 'rohit',
+    age: 18,
+    gender: 'M'
+  },
+  { _id: ObjectId("67a1ae5703af896ca8ea0798"), subject: 'DAA' },
+  {
+    _id: ObjectId("67a1ae5703af896ca8ea0799"),
+    name: 'efg',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a1ae5703af896ca8ea079a"),
+    name: 'pqr',
+    gender: 'M'
+  }
+] 
+3AH> db.getCollectionNames()
+[ 'student' ]
+3AH>

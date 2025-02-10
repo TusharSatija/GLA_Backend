@@ -1,0 +1,301 @@
+C:\Users\Asus tuf>mongosh
+Current Mongosh Log ID: 67a33f43967f43a5bc13db9a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-04T14:36:20.421+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs;
+3AD               224.00 KiB
+3AH                72.00 KiB
+3T                112.00 KiB
+3y                232.00 KiB
+Demo               72.00 KiB
+DummyProduct       72.00 KiB
+Mydata             72.00 KiB
+ad                152.00 KiB
+admin              48.00 KiB
+authDemo           72.00 KiB
+config             72.00 KiB
+e-commerce        144.00 KiB
+ecommerce          16.00 KiB
+food-app-db        40.00 KiB
+food-app-june-23   72.00 KiB
+group11           144.00 KiB
+local              88.00 KiB
+moiviesdb           8.00 KiB
+moviedb            40.00 KiB
+moviesDB            8.00 KiB
+moviesDB1           8.00 KiB
+mydatabase         40.00 KiB
+newdat             40.00 KiB
+3O>
+shopping-g2-app   260.00 KiB
+3O>
+
+3O>
+
+3O> use 3O
+already on db 3O
+3O> show collections;
+
+3O> db.student.insertOne({ name:"arpit",gender:'M' })
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a34057967f43a5bc13db9b")
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M'
+  }
+]
+3O> db.student.insertOne({ name:"Rohit",gender:'M' })
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a340d6967f43a5bc13db9c")
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M'
+  }
+]
+3O>
+{
+3O> db.student.insertMany([ { name:"pqr"} ,{ name:"xyz"} ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67a3417f967f43a5bc13db9f"),
+    '1': ObjectId("67a3417f967f43a5bc13dba0")
+  }
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+  { _id: ObjectId("67a3412f967f43a5bc13db9d"), name: 'abc' },
+  { _id: ObjectId("67a3412f967f43a5bc13db9e"), name: 'efg' },
+  { _id: ObjectId("67a3417f967f43a5bc13db9f"), name: 'pqr' },
+  { _id: ObjectId("67a3417f967f43a5bc13dba0"), name: 'xyz' }
+]
+3O> db.student.updateMany( {}, { $set:{ section: '3O' } });
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3412f967f43a5bc13db9d"),
+    name: 'abc',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3412f967f43a5bc13db9e"),
+    name: 'efg',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3417f967f43a5bc13db9f"),
+    name: 'pqr',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3417f967f43a5bc13dba0"),
+    name: 'xyz',
+    section: '3O'
+  }
+]
+3O> db.student.updateOne({ name: "abc"},{ $set:{  subject:'DAA'  }});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3412f967f43a5bc13db9d"),
+    name: 'abc',
+    section: '3O',
+    subject: 'DAA'
+  },
+  {
+    _id: ObjectId("67a3412f967f43a5bc13db9e"),
+    name: 'efg',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3417f967f43a5bc13db9f"),
+    name: 'pqr',
+    section: '3O'
+  },
+  {
+    _id: ObjectId("67a3417f967f43a5bc13dba0"),
+    name: 'xyz',
+    section: '3O'
+  }
+]
+3O> db.student.updateMany({},{ $unset:{ section:"" } });
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a3412f967f43a5bc13db9d"),
+    name: 'abc',
+    subject: 'DAA'
+  },
+  { _id: ObjectId("67a3412f967f43a5bc13db9e"), name: 'efg' },
+  { _id: ObjectId("67a3417f967f43a5bc13db9f"), name: 'pqr' },
+  { _id: ObjectId("67a3417f967f43a5bc13dba0"), name: 'xyz' }
+]
+3O> db.student.deleteOne({name:'efg' });
+{ acknowledged: true, deletedCount: 1 }
+3O> db.student.find({})
+[
+  {
+    _id: ObjectId("67a34057967f43a5bc13db9b"),
+    name: 'arpit',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67a340d6967f43a5bc13db9c"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+]
+3O> show collections;
+inventory
+student
+3O> db.inventory.find({})
+[
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba1"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba2"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+3O> db.invetory.find({  quantity:{ $gte:20 }});
+    _id: ObjectId("67a344ad967f43a5bc13dba3"),
+3O>
+    quantity: 10,
+3O>
+
+3O> db.invetory.find({  quantity:{ $gte:20 }});
+3O>
+3O> db.invetory.find({  quantity:{ $gte:20 }});
+
+3O> db.inventory.find({  quantity:{ $gte:20 }});
+[
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba1"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba2"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  }
+]
+3O> db.inventory.find({  quantity:{ $lt:20 }});
+[
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba3"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3O> db.inventory.find({  quantity:{ $lte:20 }});
+[
+  {
+    _id: ObjectId("67a344ad967f43a5bc13dba3"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3O>
+
+3O> db.getCollectionNames()
+[ 'inventory', 'student' ]
+3O>

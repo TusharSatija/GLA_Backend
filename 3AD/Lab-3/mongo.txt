@@ -1,0 +1,212 @@
+  use 3AD
+switched to db 3AD
+3AD> db.student.insertOne({name:"abc"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a09bb1a883d18258e8823a")
+}
+3AD> db.student.insertOne({name:"efg"});
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a09bd0a883d18258e8823b")
+}
+3AD> db.student.insertMany([ {name:"xyz"} ,{name:"tushar"}]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67a09c07a883d18258e8823c"),
+    '1': ObjectId("67a09c07a883d18258e8823d")
+  }
+}
+3AD> db.find({});
+TypeError: db.find is not a function
+3AD> db.student.find({});
+[
+  { _id: ObjectId("67a09bb1a883d18258e8823a"), name: 'abc' },
+  { _id: ObjectId("67a09bd0a883d18258e8823b"), name: 'efg' },
+  { _id: ObjectId("67a09c07a883d18258e8823c"), name: 'xyz' },
+  { _id: ObjectId("67a09c07a883d18258e8823d"), name: 'tushar' }]
+3AD> db.student.updateMany( {},{ $set:{gender:'m'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3AD> db.student.find({});
+[
+  {
+    _id: ObjectId("67a09bb1a883d18258e8823a"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("67a09bd0a883d18258e8823b"),
+    name: 'efg',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("67a09c07a883d18258e8823c"),
+    name: 'xyz',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("67a09c07a883d18258e8823d"),
+    name: 'tushar',
+    gender: 'm'
+  }
+] 
+3AD> db.student.updateOne( { name:"xyz"},{ $set: { name:"aaaa"}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3AD> db.student.find({});
+[
+  {
+    _id: ObjectId("67a09bb1a883d18258e8823a"),
+    name: 'abc',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("67a09bd0a883d18258e8823b"),
+    name: 'efg',
+    gender: 'm'
+  },
+  {
+    _id: ObjectId("67a09c07a883d18258e8823c"),
+    name: 'aaaa',
+    gender: 'm'
+  },
+  {
+3AD> db.student.updateMany({},{ $set:{age: "18"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3AD> db.student.find({});
+[
+3AD> db.student.updateMany({},{ $unset:{age: ""}})
+{   _id: ObjectId("67a09bb1a883d18258e8823a"),
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}   _id: ObjectId("67a09bd0a883d18258e8823b"),
+3AD> db.student.find({});
+[   gender: 'm',
+  { age: '18'
+    _id: ObjectId("67a09bb1a883d18258e8823a"),
+    name: 'abc',
+    gender: 'm'Id("67a09c07a883d18258e8823c"),
+  },name: 'aaaa',
+  { gender: 'm',
+    _id: ObjectId("67a09bd0a883d18258e8823b"),
+    name: 'efg',
+    gender: 'm'
+  },_id: ObjectId("67a09c07a883d18258e8823d"),
+  { name: 'tushar',
+    _id: ObjectId("67a09c07a883d18258e8823c"),
+    name: 'aaaa',
+    gender: 'm'
+  },
+  {>
+    _id: ObjectId("67a09c07a883d18258e8823d"),
+    name: 'tushar',
+    gender: 'm'
+  }
+]
+3AD> db.inventory.insertMany( [
+...    {
+...       "item": "nuts", "quantity": 30,
+...       "carrier": { "name": "Shipit", "fee": 3 }
+...    },
+...    {
+...       "item": "bolts", "quantity": 50,
+...       "carrier": { "name": "Shipit", "fee": 4 }
+...    },
+...    {
+...       "item": "washers", "quantity": 10,
+...       "carrier": { "name": "Shipit", "fee": 1 }
+...    }
+... ] )
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67a0a185a883d18258e8823e"),
+    '1': ObjectId("67a0a185a883d18258e8823f"),
+    '2': ObjectId("67a0a185a883d18258e88240")
+  }
+}
+3AD> db.getCollectionNames()
+[ 'student', 'inventory' ]
+3AD> db.inventory.find( {quantity:{$gte:10}});
+[
+  {
+    _id: ObjectId("67a0a185a883d18258e8823e"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a0a185a883d18258e8823f"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+  {
+    _id: ObjectId("67a0a185a883d18258e88240"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3AD> db.inventory.find( {quantity:{$gt:10}});
+[
+  {
+    _id: ObjectId("67a0a185a883d18258e8823e"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a0a185a883d18258e8823f"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  }
+]
+3AD> db.inventory.find( {quantity:{$lte:30}});
+[
+  {
+    _id: ObjectId("67a0a185a883d18258e8823e"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67a0a185a883d18258e88240"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+
+3AD> db.getCollectionNames()
+[ 'student', 'inventory' ]
+3AD> db.teacher.insertOne({ name: "rohit"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("67a0a45ca883d18258e88241")
+}
+3AD> db.getCollectionNames()
+[ 'student', 'inventory', 'teacher' ]
+3AD>

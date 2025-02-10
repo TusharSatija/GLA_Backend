@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>all blogs</title>
+</head>
+<body>
+    <h1>All blogs</h1>
+    <% for( let blog of blogs){ %>
+        <h2> title : <%=blog.title %></h2>
+        <img src="<%=blog.url%>" alt=".." srcset="">
+        <p><%=blog.desc%></p>
+        <button><a href="/blog/<%=blog.id%>/edit">Edit</a></button>
+        <form action="/blog/<%=blog.id%>?_method=DELETE" method="post">
+                <button type="submit">DELETE</button>
+        </form>
+        <%}  %>
+</body>
+</html>
+
+<!-- http://localhost:3333/blogs -->

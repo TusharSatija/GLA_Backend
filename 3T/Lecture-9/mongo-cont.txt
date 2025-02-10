@@ -1,0 +1,132 @@
+ C:\Users\Asus tuf>mongosh
+Current Mongosh Log ID: 67a8ab41d830d0060a990170
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-04T14:36:20.421+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs;
+3AD               224.00 KiB
+3AH                72.00 KiB
+3O                112.00 KiB
+3T                112.00 KiB
+3y                232.00 KiB
+Demo               72.00 KiB
+DummyProduct       72.00 KiB
+Mydata             72.00 KiB
+ad                152.00 KiB
+admin              48.00 KiB
+authDemo           72.00 KiB
+config             72.00 KiB
+e-commerce        144.00 KiB
+ecommerce          16.00 KiB
+food-app-db        40.00 KiB
+food-app-june-23   72.00 KiB
+group11           144.00 KiB
+local              88.00 KiB
+moiviesdb           8.00 KiB
+moviedb            40.00 KiB
+moviesDB            8.00 KiB
+moviesDB1           8.00 KiB
+mydatabase         40.00 KiB
+newdat             40.00 KiB
+shop-app           40.00 KiB
+shopping-g2-app   260.00 KiB
+student           328.00 KiB
+t1                 40.00 KiB
+test               40.00 KiB
+test1              72.00 KiB
+urlShortener       72.00 KiB
+urlshortner        80.00 KiB
+test> use 3T
+switched to db 3T
+3T>
+student
+3T>
+
+3T> show collections;
+student
+student1
+3T> db.student.find({});
+[
+  {
+    _id: ObjectId("679b4b15536671bef2cf5280"),
+    name: 'abc',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5281"),
+    name: 'efg',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5282"),
+    name: 'xyz',
+    gender: 'M'
+  }
+] 
+3T> db.student.updateMany( {}, { $set:{ subject:'full-stack'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+3T> db.student.find({});
+[
+  {
+    _id: ObjectId("679b4b15536671bef2cf5280"),
+    name: 'abc',
+    gender: 'M',
+    subject: 'full-stack'
+  },
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5281"),
+    name: 'efg',
+    gender: 'M',
+    subject: 'full-stack'
+  },
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5282"),
+    name: 'xyz',
+    gender: 'M',
+    subject: 'full-stack'
+  }
+]
+3T> db.student.deleteOne( {  name:"abc"})
+{ acknowledged: true, deletedCount: 1 }
+3T> db.student.find({});
+[
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5281"),
+    name: 'efg',
+    gender: 'M',
+    subject: 'full-stack'
+  },
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5282"),
+    name: 'xyz',
+    gender: 'M',
+    subject: 'full-stack'
+  }
+]
+ 
+3T> db.student.deleteMany({  name:"efg"});
+{ acknowledged: true, deletedCount: 1 }
+3T> db.student.find({});
+[
+  {
+    _id: ObjectId("679b4b6b536671bef2cf5282"),
+    name: 'xyz',
+    gender: 'M',
+    subject: 'full-stack'
+  }
+]
+3T>
