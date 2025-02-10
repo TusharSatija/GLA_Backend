@@ -17,3 +17,5 @@ let pro=[
         price:15000
     }
 ]
+
+module.exports=pro;

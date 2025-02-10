@@ -1,6 +1,8 @@
 let express=require('express');
-const { default: mongoose } = require('mongoose');
+const { mongoose } = require('mongoose');
+const pro= require('./seed');
 let app=express();
+let Product=require('./model/product');
 
 async function connect()
 {
@@ -8,6 +10,24 @@ async function connect()
     console.log("connect to db");
 }
 connect();
+
+app.get('/product',async (req,res)=>{
+    let product1= await Product.find({});
+    res.render('index',{product1});
+})
+
+async function insert()
+{
+    await Product.insertMany(pro);
+    console.log("inserted successfully ...");
+}
+// insert();
+
+app.get('/product',(req,res)=>{
+    res.render('index',{pro});
+})
+
+
 
 
 

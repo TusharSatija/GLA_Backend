@@ -11,7 +11,8 @@ async function connect()
 connect();
 
 let student=new mongoose.Schema({
-    name:String
+    name:String,
+    subject: String  
 })
 let Student1= mongoose.model('Student1',student);
 
