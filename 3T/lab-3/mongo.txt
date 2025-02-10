@@ -1,0 +1,294 @@
+C:\Users\Asus tuf>mongosh
+Current Mongosh Log ID: 67aa1ac906017288aabab739
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-02-04T14:36:20.421+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use 3T
+switched to db 3T
+3T> show collections;
+
+3T> db.student.insertOne({ name:"aman",gender:'M' })
+{
+  acknowledged: true,
+  insertedId: ObjectId("67aa1ae906017288aabab73a")
+}
+3T>  db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M'
+  }
+]
+3T> db.student.find({})
+[
+  {cknowledged: true,
+    _id: ObjectId("67aa1ae906017288aabab73a"),3b")
+    name: 'aman',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M'
+  }
+]
+3T> db.student.insertMany([ { name:"pqr"} ,{ name:"abc"} ]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67aa1b2906017288aabab73c"),
+    '1': ObjectId("67aa1b2906017288aabab73d")
+  }
+}
+3T>  db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+  { _id: ObjectId("67aa1b2906017288aabab73c"), name: 'pqr' },
+  { _id: ObjectId("67aa1b2906017288aabab73d"), name: 'abc' }
+]
+3T> db.student.updateMany( {}, { $set:{ section: '3T' } });
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3T> db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73c"),
+    name: 'pqr',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73d"),
+    name: 'abc',
+    section: '3T'
+  }
+]
+3T>  db.student.updateOne({ name: "abc"},{ $set:{  subject:'DAA'  }});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+3T> db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73c"),
+    name: 'pqr',
+    section: '3T'
+  },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73d"),
+    name: 'abc',
+    section: '3T',
+    subject: 'DAA'
+  }
+]
+3T>
+(To exit, press Ctrl+C again or Ctrl+D or type .exit)
+3T>
+
+3T> db.student.updateMany({},{ $unset:{section:""}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+3T> db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+  { _id: ObjectId("67aa1b2906017288aabab73c"), name: 'pqr' },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73d"),
+    name: 'abc',
+    subject: 'DAA'
+  }
+]
+...    {
+...       "item": "nuts", "quantity": 30,
+...       "carrier": { "name": "Shipit", "fee": 3 }
+...    },
+...    {
+...       "item": "bolts", "quantity": 50,
+...       "carrier": { "name": "Shipit", "fee": 4 }
+...    },
+...    {
+...       "item": "washers", "quantity": 10,
+...       "carrier": { "name": "Shipit", "fee": 1 }
+...    }
+... ] )
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67aa1bf306017288aabab73e"),
+    '1': ObjectId("67aa1bf306017288aabab73f"),
+3T> db.inventory.insertMany([ { "item": "nuts", "quantity": 30, "carrier": { "name": "Shipit", "fee": 3 } }, { "item": "bolts", "quantity": 50, "carrier": { "name": "Shipit", "fee": 4 } }, { "item": "washers", "quantity": 10, "carrier": { "name": "Shipit", "fee": 1 } }] )
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("67aa1c1706017288aabab741"),
+    '1': ObjectId("67aa1c1706017288aabab742"),
+    '2': ObjectId("67aa1c1706017288aabab743")
+  }
+}
+3T>
+
+3T> db.student.find({})
+[
+  {
+    _id: ObjectId("67aa1ae906017288aabab73a"),
+    name: 'aman',
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("67aa1b0006017288aabab73b"),
+    name: 'Rohit',
+    gender: 'M'
+  },
+  { _id: ObjectId("67aa1b2906017288aabab73c"), name: 'pqr' },
+  {
+    _id: ObjectId("67aa1b2906017288aabab73d"),
+    name: 'abc',
+    subject: 'DAA'
+  }
+]
+3T> db.inventory.find({})
+[
+  {
+    _id: ObjectId("67aa1bf306017288aabab73e"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67aa1bf306017288aabab73f"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+  {
+    _id: ObjectId("67aa1bf306017288aabab740"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab741"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab742"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab743"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3T> db.inventory.find({  quantity:{ $lt:20 }});
+[
+  {
+    _id: ObjectId("67aa1bf306017288aabab740"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab743"),
+    item: 'washers',
+    quantity: 10,
+    carrier: { name: 'Shipit', fee: 1 }
+  }
+]
+3T> db.inventory.find({  quantity:{ $gte:20 }});
+[
+  {
+    _id: ObjectId("67aa1bf306017288aabab73e"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67aa1bf306017288aabab73f"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab741"),
+    item: 'nuts',
+    quantity: 30,
+    carrier: { name: 'Shipit', fee: 3 }
+  },
+  {
+    _id: ObjectId("67aa1c1706017288aabab742"),
+    item: 'bolts',
+    quantity: 50,
+    carrier: { name: 'Shipit', fee: 4 }
+  }
+]
+3T>
