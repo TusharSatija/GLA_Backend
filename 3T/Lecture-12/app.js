@@ -25,11 +25,13 @@ insert();
 
 async function update()
 {
-    await Student1.findOneAndUpdate({name:"raj"},{subject:"full-stack"})
+    // await Student1.findOneAndUpdate({name:"raj"},{subject:"full-stack"})
+    await Student1.findOne({ name:"raj"}).updateOne({ subject:" fullstack"});
+    console.log("updated ");
 }
 update()
 
-
+                                                                                     
 app.listen(3000,()=>{
     console.log("app is running at port 3000");
 })
