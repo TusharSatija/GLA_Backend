@@ -1,14 +1,14 @@
-let { mongoose } = require("mongoose");
+const { mongoose } = require("mongoose");
 
 let product= new mongoose.Schema({
     title:{
         type:String,
         required:true
     },
-    img_url:{
-        type:String
+    desc:{
+        type:String,
+        required:true
     },
-    desc:String,
     price:{
         type:Number,
         min:0,
@@ -16,5 +16,5 @@ let product= new mongoose.Schema({
     }
 })
 
-let Product= mongoose.model("Product",product);
+let Product= mongoose.model('Product',product);
 module.exports=Product;

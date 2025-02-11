@@ -6,7 +6,7 @@ let app=express();
 let path=require('path');
 app.set('view engine','ejs');
 app.set(path.join(__dirname,'views'));
-
+app.use(express.urlencoded({extended:true}));
 
 async function connect()
 {
@@ -21,6 +21,22 @@ app.get('/product',async (req,res)=>{
     res.render('index',{product1});
 })
 
+app.get('/product/new',(req,res)=>{
+    res.render('new');
+})
+
+app.post('/new',async (req,res)=>{
+    console.log(req.body);
+    let {title,desc,price,img_url}=req.body;
+    await Product.create({
+        title:title,
+        desc:desc,
+        price:price,
+        img_url:img_url
+    });
+    res.redirect('product')
+})
+
 async function insert()
 {
    await Product.insertMany(products);
@@ -28,6 +44,6 @@ async function insert()
 }
 // insert();
 
-app.listen(3333,()=>{
+app.listen(3000,()=>{
     console.log("app is running at port 3333");
 })
