@@ -3,6 +3,9 @@ const { mongoose } = require('mongoose');
 const pro= require('./seed');
 let app=express();
 let Product=require('./model/product');
+let path=require('path');
+app.set('view engine','ejs');
+app.set(path.join(__dirname,'views'));
 
 async function connect()
 {
@@ -11,8 +14,9 @@ async function connect()
 }
 connect();
 
+
 app.get('/product',async (req,res)=>{
-    let product1= await Product.find({});
+    let product1= await  Product.find({});
     res.render('index',{product1});
 })
 
