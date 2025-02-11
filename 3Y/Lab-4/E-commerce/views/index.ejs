@@ -6,14 +6,14 @@
     <title>Products</title>
 </head>
 <body>
-    <h1>All Products</h1>
-    <% for( let product of product1){ %>
-        <div>
-            <img style="height:10rem;  width:10rem;" src="<%=product.img_url%>" alt="" srcset="">
-            <h6> title: <%=product.title %></h6>
-            <p>desc :  <%=product.desc %></p>
-            <h3>price: <%=product.price%></h3>
-        </div>
+    <h1>All Products</h1> 
+        <% for( let product of product1){ %>
+            <div style="width: 20rem; border:  2px solid black; ">
+                <img style="height:10rem;  width:10rem;" src="<%=product.img_url%>" alt="" srcset="">
+                <h6> title: <%=product.title %></h6>
+                <p>desc :  <%=product.desc %></p>
+                <h3>price: <%=product.price%></h3>
+            </div>
         <% } %>
 </body>
 </html>
