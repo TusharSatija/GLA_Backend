@@ -39,8 +39,9 @@ app.post('/new',async (req,res)=>{
 })
 
 app.get('/product/:id/edit',async (req,res)=>{
-    let {_id}=req.params;
-    let p1=await Product.find({_id:_id});
+    let {id}=req.params;
+    console.log(id);
+    let p1=await Product.find({_id:id});
     console.log(p1);
     res.render('edit',{p1});
 })
