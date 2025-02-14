@@ -25,6 +25,16 @@ app.get('/product/new',(req,res)=>{
     res.render('new');
 })
 
+
+app.get('/product/:id/edit',async (req,res)=>{
+    let {id}=req.params;
+       let p=await Product.find({_id:id});
+       console.log(p);
+       res.render('edit',{p});
+})
+
+
+
 async function insert()
 {
     await Product.insertMany(products);

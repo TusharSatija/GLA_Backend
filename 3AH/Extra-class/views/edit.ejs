@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    <form action="/product/edit?_method=PATCH" method="post">
+        <label for="">title</label>
+        <input type="text" name="title" id="" value="<%=p1[0].img_url %>">
+        <br>
+        <label for="">img_url</label>
+        <input type="text" name="title" id="" value="<%=p1[0].img_url%>">
+        <br>
+        <label for="">Price</label>
+        <input type="number" name="price" id="" value="<%=p1[0].price%>">
+        <br>
+        <label for="">desc</label>
+        <textarea name="desc" id="">
+            <%=p1[0].desc %>
+        </textarea>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

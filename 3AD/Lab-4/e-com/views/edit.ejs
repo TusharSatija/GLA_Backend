@@ -10,18 +10,18 @@
     <form action="/product/edit?_method=PUT" method="post" >
         <label for="">title</label>
         <input type="text" name="title" id="" 
-        value="<%=p1.title%>">
+        value="<%=p1[0].title%>">
         <br>
         <label for="">img-url</label>
         <input type="text" name="img_url" id="" 
-        value="<%=p1.img_url%>">
+        value="<%=p1[0].img_url%>">
         <br>
         <label for="">Price</label>
         <input type="number" name="price" id="" 
-        value="<%=p1.price  %>">
+        value="<%=p1[0].price  %>">
         <br>
         <label for="">desc</label>
-        <textarea name="desc" id=""><%=p1.desc%></textarea>
+        <textarea name="desc" id=""><%=p1[0].desc%></textarea>
         <br>
         <button type="submit">Submit</button>
     </form>

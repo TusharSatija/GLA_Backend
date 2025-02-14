@@ -46,6 +46,10 @@ app.get('/product/:id/edit',async (req,res)=>{
     res.render('edit',{p1});
 })
 
+app.patch('/product/edit',(req,res)=>{
+
+})
+
 async function insert()
 {
    await Product.insertMany(products);
