@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+</head>
+<body>
+    <h1>All Products</h1>
+    <% for( let p1 of product){  %>
+        <img src="<%=p1.img_url %>" alt="..." srcset="">
+        <h1>title: <%=p1.title %></h1>
+        <p>desc : <%=p1.desc %></p>
+        <h6> price : <%=p1.price %></h6>
+        <% } %>
+</body>
+</html>

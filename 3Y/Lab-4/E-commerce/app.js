@@ -56,7 +56,14 @@ app.patch('/product/:id/',async (req,res)=>{
         img_url:img_url
     })
     res.redirect('product');
+});
+
+
+app.delete('/product/delete/:id',async (req,res)=>{
+    let {id}=req.params;
+       await Product.findbyIdAndDelete({_id:id});
 })
+
 
 async function insert()
 {
