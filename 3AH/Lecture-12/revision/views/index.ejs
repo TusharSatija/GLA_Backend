@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display All Product</title>
+</head>
+<body>
+    <h1>All Product</h1>
+     <% for(let p1 of product){ %>
+        <div>
+            <h1>Name : <%=p1.name  %> </h1>
+            <p>Price : <%=p1.price %> </p>
+            <button><a href="/product/<%=p1.id%>/edit">edit</a></button>
+        </div>
+        <% } %>
+</body>
+</html>

@@ -7,6 +7,7 @@ let methodOverride=require('method-override');
 let path=require('path');
 app.set('view engine','ejs');
 app.set(path.join(__dirname,'views'));
+app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
 async function connect()
@@ -71,11 +72,6 @@ async function insert()
     console.log("inserted successfully ...");
 }
 // insert();
- 
-
-
-
-
 
 app.listen(3333,()=>{
     console.log("app is running at port 3333");
