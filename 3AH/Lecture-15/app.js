@@ -7,6 +7,27 @@ const {  mongoose } = require('mongoose');
 app.set('view engine','ejs');
 app.set(path.join(__dirname,'views'));
 app.use(express.urlencoded({extended:true}));
+let passport=require('passport');
+app.use(require('express-session')
+({ 
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true 
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+let LocalStrategy=require('passport-local').Strategy;
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      User.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        if (User.password!=password)
+             { return done(null, false); }
+        return done(null, user);
+      });
+    }
+  ));
 
 async function connectdb()
 {
@@ -32,6 +53,16 @@ app.post('/register',async (req,res)=>{
     await u1.save();
     res.send('user Registered Successfully !!');
 });
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+  
+  passport.deserializeUser(function(id, done) {
+    User.findById(id, function (err, user) {
+      done(err, user);
+    });
+  });
 
 app.get('/login',(req,res)=>{
     res.render('login');

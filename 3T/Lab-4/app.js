@@ -5,6 +5,7 @@ let User=require('./model/user');
 app.set('view engine','ejs');
 app.set(path.join(__dirname,'views'));
 let mongoose=require('mongoose');
+const user = require('./model/user');
 
 app.use(express.urlencoded({extended:true}));
 
@@ -35,8 +36,9 @@ app.get('/register',(req,res)=>{
   res.render('register');
 })
 
-app.post('/register',async(req,res)=>{
+app.post('/register',async (req,res)=>{
   let {uname,mail,password}=req.body;
+  console.log(req.body);
   let u1= new User({
     name:uname,
     mail:mail,
@@ -50,8 +52,20 @@ app.get('/login',(req,res)=>{
   res.render('login');
 })
 
-app.post('/login',(req,res)=>{
-
+app.post('/login',async (req,res)=>{
+  let {uname, password}=req.body;
+  let u1=await User.findOne({name:uname});
+  if(!u1)
+  {
+    res.send("Invalid USer");
+  }
+  if(password==u1.password)
+  {
+    res.send(`welcome ${uname}`);
+  }
+  else{
+    res.send('user not found');
+  }
 })
 
 app.listen(3000,()=>{
